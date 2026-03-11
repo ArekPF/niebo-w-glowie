@@ -25,6 +25,7 @@ export function Footer() {
             <h3 className="font-bold text-lg mb-4" data-design-id="footer-title-3">Obserwuj</h3>
             <ul className="space-y-2" data-design-id="footer-social-list">
               <li data-design-id="footer-social-item-1"><a href="https://www.tiktok.com/@niebowglowie" target="_blank" rel="noopener noreferrer" className="text-sm text-muted-foreground hover:text-primary transition-colors" data-design-id="footer-social-link-1">TikTok</a></li>
+              <li data-design-id="footer-social-item-3"><a href="https://www.instagram.com/niebo_w_glowie/" target="_blank" rel="noopener noreferrer" className="text-sm text-muted-foreground hover:text-primary transition-colors" data-design-id="footer-social-link-3">Instagram</a></li>
               <li data-design-id="footer-social-item-2"><a href="https://suppi.pl/niebowglowie" target="_blank" rel="noopener noreferrer" className="text-sm text-muted-foreground hover:text-primary transition-colors" data-design-id="footer-social-link-2">Wesprzyj na Suppi</a></li>
             </ul>
           </div>

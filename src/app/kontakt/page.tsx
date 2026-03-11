@@ -107,6 +107,11 @@ export default function ContactPage() {
                 Obserwuj na TikTok
               </a>
             </Button>
+            <Button asChild variant="outline" className="w-full justify-start text-left bg-white font-bold mt-4" size="lg" data-design-id="kontakt-ig-btn">
+              <a href="https://www.instagram.com/niebo_w_glowie/" target="_blank" rel="noopener noreferrer" data-design-id="kontakt-ig-link">
+                Obserwuj @niebo_w_glowie na Instagramie
+              </a>
+            </Button>
           </div>
 
           <div className="bg-slate-50 p-8 rounded-xl border border-slate-200" data-design-id="kontakt-support-box">

@@ -19,51 +19,31 @@ export default function Home() {
         </div>
         
         {/* Content */}
-        <div className="container relative z-10 mx-auto px-4 py-16 md:py-24" data-design-id="hero-content-container">
-          <div className="flex flex-col md:flex-row items-center justify-between gap-8 md:gap-16 max-w-6xl mx-auto" data-design-id="hero-content-flex">
+        <div className="container relative z-10 mx-auto px-4 py-16 md:py-24 flex items-center justify-center" data-design-id="hero-content-container">
+          <div className="max-w-3xl mx-auto text-center bg-white/40 backdrop-blur-md p-8 md:p-12 rounded-3xl border border-white/20 shadow-xl" data-design-id="hero-text-col">
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight mb-6" data-design-id="hero-title">
+              <span className="text-primary block" data-design-id="hero-title-line-1">ZACZNIJ MYŚLEĆ</span>
+              <span className="text-slate-800 block" data-design-id="hero-title-line-2">NA SKALĘ NIEBA</span>
+            </h1>
             
-            {/* Text Side */}
-            <div className="flex-1 w-full text-center md:text-left" data-design-id="hero-text-col">
-              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight mb-6" data-design-id="hero-title">
-                <span className="text-primary block" data-design-id="hero-title-line-1">ZACZNIJ MYŚLEĆ</span>
-                <span className="text-slate-800 block" data-design-id="hero-title-line-2">NA SKALĘ NIEBA</span>
-              </h1>
+            <p className="text-base md:text-xl text-slate-800 font-medium mb-10 max-w-2xl mx-auto" data-design-id="hero-description">
+              Tworzę treści chrześcijańskie, które pomagają odnajdywać Bożą miłość na co dzień. 
+              Odkryj moją twórczość i zacznij żyć z perspektywy nieba.
+            </p>
+            
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-4" data-design-id="hero-actions">
+              <Button asChild size="lg" className="rounded-full px-8 text-white font-bold text-lg hover:bg-yellow-500 w-full sm:w-auto" data-design-id="hero-cta-btn">
+                <Link href="/warsztaty" data-design-id="hero-cta-link">
+                  WARSZTATY
+                </Link>
+              </Button>
               
-              <p className="text-base md:text-lg text-slate-700 mb-8 max-w-xl mx-auto md:mx-0" data-design-id="hero-description">
-                &quot;Bóg chce Ci błogosławić, nie ograniczaj Go&quot; to e-book, który pomoże Ci otworzyć 
-                się na Boże działanie w codzienności – w pracy, relacjach, decyzjach i marzeniach. 
-                Znajdziesz tu praktyczne refleksje o tym, jak przestać myśleć po ludzku i zacząć żyć 
-                z perspektywy nieba.
-              </p>
-              
-              <div className="flex flex-col sm:flex-row items-center justify-center md:justify-start gap-4" data-design-id="hero-actions">
-                <Button asChild size="lg" className="rounded-full px-8 text-white font-bold text-lg hover:bg-yellow-500 w-full sm:w-auto" data-design-id="hero-cta-btn">
-                  <a href="https://1ct.eu/lgnDr" target="_blank" rel="noopener noreferrer" data-design-id="hero-cta-link">
-                    KUP E-BOOK
-                  </a>
-                </Button>
-                
-                <Button asChild variant="outline" size="lg" className="rounded-full px-8 font-bold text-lg bg-white/80 hover:bg-white w-full sm:w-auto" data-design-id="hero-secondary-btn">
-                  <Link href="/sklep" data-design-id="hero-secondary-link">
-                    ZOBACZ SKLEP
-                  </Link>
-                </Button>
-              </div>
+              <Button asChild variant="outline" size="lg" className="rounded-full px-8 font-bold text-lg bg-white/90 hover:bg-white w-full sm:w-auto" data-design-id="hero-secondary-btn">
+                <Link href="/sklep" data-design-id="hero-secondary-link">
+                  SKLEP
+                </Link>
+              </Button>
             </div>
-            
-            {/* Image Side */}
-            <div className="flex-1 w-full flex justify-center mt-8 md:mt-0" data-design-id="hero-image-col">
-              <div className="relative w-[280px] h-[380px] sm:w-[350px] sm:h-[480px] lg:w-[450px] lg:h-[600px] drop-shadow-2xl" data-design-id="hero-image-wrapper">
-                <Image
-                  src="/ebook-tablet.png"
-                  alt="E-book Bóg chce Ci błogosławić na tablecie"
-                  fill
-                  className="object-contain"
-                  data-design-id="hero-image"
-                />
-              </div>
-            </div>
-            
           </div>
         </div>
       </section>
