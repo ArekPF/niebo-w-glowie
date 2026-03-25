@@ -6,18 +6,47 @@ import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Mail, MessageSquare, HeartHandshake } from "lucide-react";
-import React, { useState } from "react";
+import type React from "react";
+import { useState } from "react";
 
 export default function ContactPage() {
   const [status, setStatus] = useState<"idle" | "submitting" | "success" | "error">("idle");
+  const [errorMessage, setErrorMessage] = useState<string>("");
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const DEFAULT_ERROR = "Coś poszło nie tak. Spróbuj ponownie.";
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setStatus("submitting");
-    // Simulate form submission
-    setTimeout(() => {
-      setStatus("success");
-    }, 1500);
+
+    const form = e.currentTarget;
+    const formData = new FormData(form);
+    const name = formData.get("name") as string;
+    const email = formData.get("email") as string;
+    const message = formData.get("message") as string;
+
+    try {
+      const response = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ name, email, message }),
+      });
+
+      if (response.ok) {
+        setStatus("success");
+      } else {
+        let apiError = DEFAULT_ERROR;
+        try {
+          const data = await response.json();
+          apiError = data.error ?? DEFAULT_ERROR;
+        } catch { /* keep default error */ }
+        setErrorMessage(apiError);
+        setStatus("error");
+      }
+    } catch {
+      setErrorMessage(DEFAULT_ERROR);
+      setStatus("error");
+    }
   };
 
   return (
@@ -44,7 +73,7 @@ export default function ContactPage() {
             {status === "success" ? (
               <div className="bg-green-50 text-green-800 p-6 rounded-xl flex flex-col items-center justify-center space-y-4 text-center border border-green-200" data-design-id="kontakt-success-box">
                 <div className="w-12 h-12 bg-green-100 rounded-full flex items-center justify-center mb-2" data-design-id="kontakt-success-icon-wrapper">
-                  <svg className="w-6 h-6 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" data-design-id="kontakt-success-icon"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7"></path></svg>
+                  <svg className="w-6 h-6 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" data-design-id="kontakt-success-icon"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7" /></svg>
                 </div>
                 <h3 className="font-bold text-lg" data-design-id="kontakt-success-title">Dziękuję za wiadomość!</h3>
                 <p data-design-id="kontakt-success-text">Odpowiem wkrótce.</p>
@@ -82,6 +111,9 @@ export default function ContactPage() {
                 >
                   {status === "submitting" ? "Wysyłanie..." : "Wyślij wiadomość"}
                 </Button>
+                {status === "error" && (
+                  <p className="text-sm text-red-600 text-center" data-design-id="kontakt-error-msg">{errorMessage}</p>
+                )}
               </form>
             )}
           </CardContent>
