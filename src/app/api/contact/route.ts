@@ -73,6 +73,7 @@ export async function POST(request: Request) {
 		const res = await fetch(ZEPTOMAIL_URL, {
 			method: "POST",
 			headers: {
+				Accept: "application/json",
 				Authorization: authHeader,
 				"Content-Type": "application/json",
 			},
