@@ -83,18 +83,19 @@ export default function ContactPage() {
               <form onSubmit={handleSubmit} className="space-y-6" data-design-id="kontakt-form">
                 <div className="space-y-2" data-design-id="kontakt-input-name-group">
                   <Label htmlFor="name" data-design-id="kontakt-label-name">Imię</Label>
-                  <Input id="name" required placeholder="Twoje imię" className="bg-slate-50" data-design-id="kontakt-input-name" />
+                  <Input id="name" name="name" required placeholder="Twoje imię" className="bg-slate-50" data-design-id="kontakt-input-name" />
                 </div>
                 
                 <div className="space-y-2" data-design-id="kontakt-input-email-group">
                   <Label htmlFor="email" data-design-id="kontakt-label-email">E-mail</Label>
-                  <Input id="email" type="email" required placeholder="twoj@adres.pl" className="bg-slate-50" data-design-id="kontakt-input-email" />
+                  <Input id="email" name="email" type="email" required placeholder="twoj@adres.pl" className="bg-slate-50" data-design-id="kontakt-input-email" />
                 </div>
                 
                 <div className="space-y-2" data-design-id="kontakt-input-message-group">
                   <Label htmlFor="message" data-design-id="kontakt-label-message">Wiadomość</Label>
                   <Textarea 
                     id="message" 
+                    name="message"
                     required 
                     placeholder="Wpisz treść swojej wiadomości..." 
                     className="min-h-[150px] bg-slate-50" 
