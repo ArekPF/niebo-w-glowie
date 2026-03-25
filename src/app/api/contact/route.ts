@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
 
 const ZEPTOMAIL_TOKEN = process.env.ZEPTOMAIL_TOKEN;
-const ZEPTOMAIL_URL = "https://api.zeptomail.com/v1.1/email";
+const ZEPTOMAIL_URL = "https://api.zeptomail.eu/v1.1/email";
 
 const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
