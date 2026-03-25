@@ -35,10 +35,14 @@ export async function POST(request: Request) {
 	}
 
 	try {
+		const authHeader = ZEPTOMAIL_TOKEN.startsWith("Zoho-enczapikey ")
+			? ZEPTOMAIL_TOKEN
+			: `Zoho-enczapikey ${ZEPTOMAIL_TOKEN}`;
+
 		const res = await fetch(ZEPTOMAIL_URL, {
 			method: "POST",
 			headers: {
-				Authorization: ZEPTOMAIL_TOKEN,
+				Authorization: authHeader,
 				"Content-Type": "application/json",
 			},
 			body: JSON.stringify({
