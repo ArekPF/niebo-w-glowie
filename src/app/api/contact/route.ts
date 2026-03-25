@@ -1,15 +1,12 @@
-import { SendMailClient } from "zeptomail";
 import { NextResponse } from "next/server";
 
-const token = process.env.ZEPTOMAIL_TOKEN;
-const client = token
-	? new SendMailClient({ url: "api.zeptomail.com/", token })
-	: null;
+const ZEPTOMAIL_TOKEN = process.env.ZEPTOMAIL_TOKEN;
+const ZEPTOMAIL_URL = "https://api.zeptomail.eu/v1.1/email";
 
 const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
 export async function POST(request: Request) {
-	if (!client) {
+	if (!ZEPTOMAIL_TOKEN) {
 		return NextResponse.json(
 			{ error: "Usługa wysyłania e-maili jest niedostępna. Skontaktuj się z administratorem." },
 			{ status: 503 },
@@ -38,14 +35,31 @@ export async function POST(request: Request) {
 	}
 
 	try {
-		await client.sendMail({
-			from: { address: "noreply@niebowglowie.pl", name: "Formularz kontaktowy" },
-			to: [{ email_address: { address: "kontakt@niebowglowie.pl", name: "Niebo w Głowie" } }],
-			reply_to: [{ address: email, name }],
-			subject: `Nowa wiadomość od ${name}`,
-			textbody: `Imię: ${name}\nE-mail: ${email}\n\nWiadomość:\n${message}`,
+		const res = await fetch(ZEPTOMAIL_URL, {
+			method: "POST",
+			headers: {
+				Authorization: ZEPTOMAIL_TOKEN,
+				"Content-Type": "application/json",
+			},
+			body: JSON.stringify({
+				from: { address: "noreply@niebowglowie.pl", name: "Formularz kontaktowy" },
+				to: [{ email_address: { address: "kontakt@niebowglowie.pl", name: "Niebo w Głowie" } }],
+				reply_to: [{ address: email, name }],
+				subject: `Nowa wiadomość od ${name}`,
+				textbody: `Imię: ${name}\nE-mail: ${email}\n\nWiadomość:\n${message}`,
+			}),
 		});
-	} catch {
+
+		if (!res.ok) {
+			const errorBody = await res.text();
+			console.error(`[contact] ZeptoMail error ${res.status}:`, errorBody);
+			return NextResponse.json(
+				{ error: "Nie udało się wysłać wiadomości. Spróbuj ponownie." },
+				{ status: 500 },
+			);
+		}
+	} catch (error) {
+		console.error("[contact] fetch error:", error);
 		return NextResponse.json(
 			{ error: "Nie udało się wysłać wiadomości. Spróbuj ponownie." },
 			{ status: 500 },
