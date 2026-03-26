@@ -55,7 +55,7 @@ export default function WorkshopsPage() {
             
             {/* Action button: Usually goes to a signup form or contact */}
             <Button asChild size="lg" className="rounded-full w-full sm:w-auto px-8 text-white font-bold" data-design-id="warsztaty-cta-btn">
-              <a href="/kontakt" data-design-id="warsztaty-cta-link">
+              <a href="https://betania.wroclaw.pl/" data-design-id="warsztaty-cta-link">
                 Zapytaj o najbliższy termin
               </a>
             </Button>
