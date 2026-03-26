@@ -75,7 +75,7 @@ export default function StorePage() {
           </CardContent>
           <CardFooter className="pt-4 pb-8 flex justify-center" data-design-id="product-footer-2">
             <Button asChild size="lg" className="rounded-full w-full max-w-[280px] text-white font-bold" data-design-id="product-buy-btn-2">
-              <a href="https://niebowglowie.1ct.eu/cart/?product=bog-chce-ci-blogoslawic" target="_blank" rel="noopener noreferrer" data-design-id="product-buy-link-2">
+              <a href="https://1ct.eu/lgnDr" target="_blank" rel="noopener noreferrer" data-design-id="product-buy-link-2">
                 Kup e-book
               </a>
             </Button>
