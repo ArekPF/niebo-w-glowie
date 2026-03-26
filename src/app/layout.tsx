@@ -13,6 +13,9 @@ const montserrat = Montserrat({
 export const metadata: Metadata = {
   title: "Niebo w Głowie | Wiktoria Kumpin",
   description: "Zacznij myśleć na skalę nieba. Treści chrześcijańskie, książki, e-booki i warsztaty dla małżeństw.",
+  icons: {
+    icon: "/favicon-512x512.png",
+  },
 };
 
 export default function RootLayout({
